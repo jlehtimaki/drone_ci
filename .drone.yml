@@ -21,10 +21,11 @@ steps:
       GOOS: linux
 
   - name: release
-    image: node:latest
+    image: plugins/docker
     settings:
       debug: true
     commands:
+      - ls -la /var/run/
       - docker login -u $USERNAME -p $PASSWORD
       - docker build -t hello-world .
       - docker push hello-world
