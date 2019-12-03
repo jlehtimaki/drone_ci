@@ -22,7 +22,7 @@ steps:
       GOOS: linux
 
   - name: release
-    image: docker:dind
+    image: docker:git
     commands:
       - docker login -u $USERNAME -p $PASSWORD
       - docker build -t hello-world .
