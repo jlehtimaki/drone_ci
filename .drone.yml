@@ -23,6 +23,7 @@ steps:
   - name: release
     image: plugins/docker
     settings:
+      auto_tag: true
       repo: lehtux/drone_cicd
       username:
         from_secret: username
@@ -35,11 +36,6 @@ steps:
       event:
         - pull_request
         - push
-    environment:
-      PASSWORD:
-        from_secret: password
-      USERNAME:
-        from_secret: username
 
 volumes:
   - name: cache
