@@ -21,7 +21,7 @@ steps:
       GOOS: linux
 
   - name: release
-    image: plugins/docker
+    image: node:latest
     settings:
       debug: true
     commands:
