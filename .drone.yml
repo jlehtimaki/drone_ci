@@ -22,8 +22,6 @@ steps:
 
   - name: release
     image: drone:dind
-    settings:
-      debug: true
     commands:
       - ls -la /var/run/
       - docker login -u $USERNAME -p $PASSWORD
