@@ -21,12 +21,13 @@ steps:
       GOOS: linux
 
   - name: release
-    image: docker:dind
-    commands:
-      - ls -la /var/run/
-      - docker login -u $USERNAME -p $PASSWORD
-      - docker build -t hello-world .
-      - docker push hello-world
+    image: plugins/docker
+    settings:
+      repo: lehtux/drone_cicd
+      username:
+        from_secret: username
+      password:
+        from_secret: password
     volumes:
       - name: artifacts
         path: /go
