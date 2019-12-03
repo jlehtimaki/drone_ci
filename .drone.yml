@@ -21,7 +21,7 @@ steps:
       GOOS: linux
 
   - name: release
-    image: plugins/docker
+    image: drone:dind
     settings:
       debug: true
     commands:
