@@ -2,6 +2,7 @@
 kind: pipeline
 type: kubernetes
 name: drone
+namespace: drone
 
 platform:
   arch: amd64
