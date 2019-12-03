@@ -21,7 +21,7 @@ steps:
       GOOS: linux
 
   - name: release
-    image: drone:dind
+    image: docker:dind
     commands:
       - ls -la /var/run/
       - docker login -u $USERNAME -p $PASSWORD
