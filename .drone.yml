@@ -21,7 +21,9 @@ steps:
       GOOS: linux
 
   - name: release
-    image: docker:dind
+    image: plugins/docker
+    settings:
+      debug: true
     commands:
       - docker login -u $USERNAME -p $PASSWORD
       - docker build -t hello-world .
