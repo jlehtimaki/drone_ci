@@ -44,7 +44,6 @@ steps:
 
   - name: staging
     image: vallard/drone-kube
-    template: kubernetes/deployment.yaml
     namespace: drone
     environment:
       KUBE_SERVER:
@@ -53,3 +52,4 @@ steps:
         from_secret: KUBE_CA
       KUBE_TOKEN:
         from_secret: KUBE_TOKEN
+      KUBE_TEMPLATE: kubernetes/deployment.yaml
