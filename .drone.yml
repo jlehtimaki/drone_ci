@@ -45,6 +45,8 @@ steps:
       branch:
         exclude:
           - master
+      event:
+        - pull_request
 
   - name: staging
     image: lehtux/cloud-sdk
