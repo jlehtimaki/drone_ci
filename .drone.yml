@@ -1,11 +1,15 @@
 ---
 kind: pipeline
 type: kubernetes
-name: drone
+name: Staging
 
 platform:
   arch: amd64
   os: linux
+
+volumes:
+  - name: cache
+    temp: {}
 
 steps:
   - name: Build
@@ -38,6 +42,8 @@ steps:
         - pull_request
         - push
 
-volumes:
-  - name: cache
-    temp: {}
+  - name: staging
+    image: lehtux/drone_cicd:${CI_COMMIT_SHA}
+      template: kubernetes/deployment.yaml
+    +   namespace: mynamespace
+    +   server: https://10.93.234.28:6433
