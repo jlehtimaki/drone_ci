@@ -45,7 +45,7 @@ steps:
   - name: staging
     image: lehtux/cloud-sdk
     commands:
-      - envsubst < kubernetes/deployment.yml | kubectl apply -f -
+      - envsubst < kubernetes/deployment.yml | kubectl apply -n drone-staging -f -
     environment:
       URL: stdrone
       KUBE_NAMESPACE: drone-staging
