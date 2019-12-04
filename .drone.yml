@@ -24,9 +24,8 @@ steps:
       GOARCH: amd64
       GOOS: linux
     when:
-      branch:
-        exclude:
-          - master
+      event:
+        - pull_request
 
   - name: release
     image: plugins/docker
