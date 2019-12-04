@@ -45,8 +45,6 @@ steps:
   - name: staging
     image: lehtux/cloud-sdk
     commands:
-      - echo ${KUBE_NAMESPACE}
-      - printenv
       - envsubst < kubernetes/deployment.yml | kubectl apply -f -
     environment:
       URL: stdrone
