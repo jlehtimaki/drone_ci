@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: hello-world-app
-          image: lehtux/drone_cicd:$TAG
+          image: lehtux/drone_cicd:$CI_COMMIT_SHA
           imagePullPolicy: Always
           ports:
             - containerPort: 3000

@@ -49,7 +49,6 @@ steps:
       - printenv
       - envsubst < kubernetes/deployment.yml | kubectl apply -n drone-staging -f -
     environment:
-      TAG: ${GIT_COMMIT_SHA}
       URL: stdrone
       KUBE_NAMESPACE: drone-staging
 
