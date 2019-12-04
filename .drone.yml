@@ -23,6 +23,10 @@ steps:
     environment:
       GOARCH: amd64
       GOOS: linux
+    when:
+      branch:
+        exclude:
+          - master
 
   - name: release
     image: plugins/docker
@@ -38,9 +42,9 @@ steps:
       - name: artifacts
         path: /go
     when:
-      event:
-        - pull_request
-        - push
+      branch:
+        exclude:
+          - master
 
   - name: staging
     image: lehtux/cloud-sdk
@@ -49,4 +53,67 @@ steps:
     environment:
       URL: stdrone
       KUBE_NAMESPACE: drone-staging
+    when:
+      branch:
+        exclude:
+          - master
+      event:
+        - pull_request
+---
+kind: pipeline
+type: kubernetes
+name: Production
 
+platform:
+  arch: amd64
+  os: linux
+
+volumes:
+  - name: cache
+    temp: {}
+
+steps:
+  - name: Build
+    image: golang:1.13.0
+    commands:
+      - go test
+      - go build -o main
+    volumes:
+      - name: artifacts
+        path: /go
+    environment:
+      GOARCH: amd64
+      GOOS: linux
+    when:
+      branch:
+        - master
+
+  - name: release
+    image: plugins/docker
+    settings:
+      tags: ${CI_COMMIT_SHA}
+      auto_tag: false
+      repo: lehtux/drone_cicd
+      username:
+        from_secret: username
+      password:
+        from_secret: password
+    volumes:
+      - name: artifacts
+        path: /go
+    when:
+      branch:
+        - master
+
+  - name: production
+    image: lehtux/cloud-sdk
+    commands:
+      - envsubst < kubernetes/deployment.yml | kubectl apply -n drone-staging -f -
+    environment:
+      URL: prodrone
+      KUBE_NAMESPACE: drone-prod
+    when:
+      branch:
+        - master
+      event:
+        - push
