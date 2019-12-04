@@ -43,13 +43,12 @@ steps:
         - push
 
   - name: staging
-    image: vallard/drone-kube
-    namespace: drone
-    environment:
-      KUBE_SERVER:
-        from_secret: KUBE_SERVER
-      KUBE_CA:
-        from_secret: KUBE_CA
-      KUBE_TOKEN:
-        from_secret: KUBE_TOKEN
-      KUBE_TEMPLATE: kubernetes/deployment.yml
+    image: quay.io/honestbee/drone-kubernetes
+    kubernetes_server:
+      from_secret: KUBE_SERVER
+    kubernetes_token:
+      from_secret: KUBE_TOKEN
+    namespace: drone-staging
+    deployment: drone-staging
+    repo: lehtux/drone_cicd
+    tag: ${GIT_COMMIT_SHA}
