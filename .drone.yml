@@ -43,12 +43,7 @@ steps:
         - push
 
   - name: staging
-    image: quay.io/honestbee/drone-kubernetes
-    kubernetes_server:
-      from_secret: KUBE_SERVER
-    kubernetes_token:
-      from_secret: KUBE_TOKEN
-    namespace: drone-staging
-    deployment: hello-world-app
-    repo: lehtux/drone_cicd
-    tag: ${GIT_COMMIT_SHA}
+    image: lehtux/cloud-sdk
+    commands:
+      - ls -l
+      - kubectl get pods
