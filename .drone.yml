@@ -45,7 +45,8 @@ steps:
   - name: staging
     image: lehtux/cloud-sdk
     commands:
-      - envsubst < kubernetes/deployment.yml | kubectl apply -n $KUBE_NAMESPACE -f -
+      - echo ${KUBE_NAMESPACE}
+      - envsubst < kubernetes/deployment.yml | kubectl apply -n ${KUBE_NAMESPACE} -f -
     environment:
       TAG: ${GIT_COMMIT_SHA}
       URL: stdrone
