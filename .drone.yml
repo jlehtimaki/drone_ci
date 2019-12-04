@@ -43,6 +43,6 @@ steps:
         - push
 
   - name: staging
-      image: lehtux/drone_cicd:${CI_COMMIT_SHA}
-      template: kubernetes/deployment.yaml
-    + namespace: drone
+    image: lehtux/drone_cicd:${CI_COMMIT_SHA}
+    template: kubernetes/deployment.yaml
+    namespace: drone
