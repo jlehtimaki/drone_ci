@@ -49,6 +49,6 @@ steps:
     kubernetes_token:
       from_secret: KUBE_TOKEN
     namespace: drone-staging
-    deployment: drone-staging
+    deployment: hello-world-app
     repo: lehtux/drone_cicd
     tag: ${GIT_COMMIT_SHA}
