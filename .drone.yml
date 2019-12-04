@@ -91,7 +91,6 @@ steps:
     image: plugins/docker
     settings:
       tags: ${CI_COMMIT_SHA}
-      auto_tag: false
       repo: lehtux/drone_cicd
       username:
         from_secret: username
@@ -110,7 +109,7 @@ steps:
   - name: production
     image: lehtux/cloud-sdk
     commands:
-      - envsubst < kubernetes/deployment.yml | kubectl apply -n drone-staging -f -
+      - envsubst < kubernetes/deployment.yml | kubectl apply -n drone-prod -f -
     environment:
       URL: prodrone
       KUBE_NAMESPACE: drone-prod
