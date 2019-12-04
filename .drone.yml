@@ -46,3 +46,10 @@ steps:
     image: vallard/drone-kube
     template: kubernetes/deployment.yaml
     namespace: drone
+    environment:
+      KUBE_SERVER:
+        from_secret: KUBE_SERVER
+      KUBE_CA:
+        from_secret: KUBE_CA
+      KUBE_TOKEN:
+        from_secret: KUBE_TOKEN
