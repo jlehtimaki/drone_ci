@@ -83,6 +83,9 @@ steps:
     when:
       branch:
         - master
+      event:
+        exclude:
+          - pull_request
 
   - name: release
     image: plugins/docker
@@ -100,6 +103,9 @@ steps:
     when:
       branch:
         - master
+      event:
+        exclude:
+          - pull_request
 
   - name: production
     image: lehtux/cloud-sdk
