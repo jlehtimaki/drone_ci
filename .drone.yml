@@ -52,4 +52,4 @@ steps:
         from_secret: KUBE_CA
       KUBE_TOKEN:
         from_secret: KUBE_TOKEN
-      KUBE_TEMPLATE: kubernetes/deployment.yaml
+      KUBE_TEMPLATE: kubernetes/deployment.yml
