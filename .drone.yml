@@ -46,7 +46,7 @@ steps:
     image: lehtux/cloud-sdk
     commands:
       - echo ${KUBE_NAMESPACE}
-      - envsubst < kubernetes/deployment.yml | kubectl apply -n ${KUBE_NAMESPACE} -f -
+      - envsubst < kubernetes/deployment.yml | kubectl apply -n drone-staging -f -
     environment:
       TAG: ${GIT_COMMIT_SHA}
       URL: stdrone
