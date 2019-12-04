@@ -23,7 +23,7 @@ steps:
   - name: release
     image: plugins/docker
     settings:
-      tags: $CI_COMMIT_SHA
+      tags: ${CI_COMMIT_SHA}
       auto_tag: false
       repo: lehtux/drone_cicd
       username:
