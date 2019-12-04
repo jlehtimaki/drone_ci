@@ -11,6 +11,7 @@ steps:
   - name: Build
     image: golang:1.13.0
     commands:
+      - printenv
       - go test
       - go build -o main
     volumes:
