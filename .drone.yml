@@ -42,9 +42,6 @@ steps:
       - name: artifacts
         path: /go
     when:
-      branch:
-        exclude:
-          - master
       event:
         - pull_request
 
@@ -56,9 +53,6 @@ steps:
       URL: stdrone
       KUBE_NAMESPACE: drone-staging
     when:
-      branch:
-        exclude:
-          - master
       event:
         - pull_request
 ---
@@ -117,3 +111,6 @@ steps:
     when:
       branch:
         - master
+      event:
+        exclude:
+          - pull_request
