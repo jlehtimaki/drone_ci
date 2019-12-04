@@ -47,7 +47,7 @@ steps:
     commands:
       - echo ${KUBE_NAMESPACE}
       - printenv
-      - envsubst < kubernetes/deployment.yml | kubectl apply -n drone-staging -f -
+      - envsubst < kubernetes/deployment.yml | kubectl apply -f -
     environment:
       URL: stdrone
       KUBE_NAMESPACE: drone-staging
