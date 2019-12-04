@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: hello-world-app
-          image: lehtux/drone_cicd:latest
+          image: lehtux/drone_cicd:$TAG
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
@@ -55,10 +55,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - prodrone.jlehtimaki.polarsquad.dev
+        - $URL.jlehtimaki.polarsquad.dev
       secretName: hello-world-app-tls
   rules:
-    - host: prodrone.jlehtimaki.polarsquad.dev
+    - host: $URL.jlehtimaki.polarsquad.dev
       http:
         paths:
           - backend:
