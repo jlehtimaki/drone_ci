@@ -43,7 +43,6 @@ steps:
         - push
 
   - name: staging
-    image: lehtux/drone_cicd:${CI_COMMIT_SHA}
+      image: lehtux/drone_cicd:${CI_COMMIT_SHA}
       template: kubernetes/deployment.yaml
-    +   namespace: mynamespace
-    +   server: https://10.93.234.28:6433
+    + namespace: drone
