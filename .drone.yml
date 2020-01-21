@@ -7,10 +7,6 @@ platform:
   arch: amd64
   os: linux
 
-volumes:
-  - name: cache
-    temp: {}
-
 steps:
   - name: Build
     image: golang:1.13.0
@@ -24,9 +20,8 @@ steps:
       GOARCH: amd64
       GOOS: linux
     when:
-      branch:
-        exclude:
-          - master
+      event:
+        - pull_request
 
   - name: release
     image: plugins/docker
