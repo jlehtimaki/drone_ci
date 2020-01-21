@@ -7,10 +7,6 @@ platform:
   arch: amd64
   os: linux
 
-volumes:
-  - name: cache
-    temp: {}
-
 steps:
   - name: Build
     image: golang:1.13.0
