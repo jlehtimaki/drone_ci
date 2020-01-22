@@ -39,17 +39,6 @@ steps:
     when:
       event:
         - pull_request
-
-  - name: staging
-    image: lehtux/cloud-sdk
-    commands:
-      - envsubst < kubernetes/deployment.yml | kubectl apply -n drone-staging -f -
-    environment:
-      URL: stdrone
-      KUBE_NAMESPACE: drone-staging
-    when:
-      event:
-        - pull_request
 ---
 kind: pipeline
 type: kubernetes
@@ -94,20 +83,6 @@ steps:
     volumes:
       - name: artifacts
         path: /go
-    when:
-      branch:
-        - master
-      event:
-        exclude:
-          - pull_request
-
-  - name: production
-    image: lehtux/cloud-sdk
-    commands:
-      - envsubst < kubernetes/deployment.yml | kubectl apply -n drone-prod -f -
-    environment:
-      URL: prodrone
-      KUBE_NAMESPACE: drone-prod
     when:
       branch:
         - master
